@@ -38,7 +38,13 @@
         <hr>
         <label>Votre nom :</label>
         <input type="text" v-model="username">
-        <p>Bonjour {{ username }} !</p>
+        <label>Votre pays</label>
+        <select v-model="selectedCountry">
+            <option value="France">fr</option>
+            <option value="Suisse">ch</option>
+            <option value="Belge">be</option>
+        </select>
+        <p>Bonjour {{ username }} ! Vous êtes {{ selectedCountry}}</p>
 
 
     </div>
@@ -60,6 +66,7 @@
                         { id: 3, firstname: "Farah", lastname: "Mohamed" },
                     ],
                     username: 'NomParDéfaut',
+                    selectedCountry: ''
                 };
             },
             methods: {
