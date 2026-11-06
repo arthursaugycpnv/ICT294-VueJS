@@ -15,10 +15,13 @@
             <p>Prix : {{ price }} CHF</p>
             <p>
                 Quantité : {{ quantity }}
-                <button @click="increaseQuantity">+</button>
                 <button @click="decreaseQuantity">-</button>
+                <button @click="increaseQuantity">+</button>
             </p>
             <p>Total : <b>{{totalPrice}} CHF</b></p>
+        </div>
+        <div v-else-if="quantity === 0">
+            <p>Rupture stock / Aucune quantité à acheter </p>
         </div>
         <div v-else>
             <p>Produit indisponible</p>
@@ -36,7 +39,7 @@
                     product: "Chaussettes",
                     price: 12,
                     quantity: 2,
-                    isAvailable: true,
+                    isAvailable: false,
                 };
             },
             methods: {
