@@ -18,6 +18,9 @@
                 <button @click="decreaseQuantity">-</button>
                 <button @click="increaseQuantity">+</button>
             </p>
+            <!-- Vue supprime les espaces entre 2 éléments
+            -> utiliser un join ou du css -->
+            <p><b>Tailles</b> : <span v-for="size in sizes">{{ size }}, </span></p>
             <p>Total : <b>{{totalPrice}} CHF</b></p>
         </div>
         <div v-else-if="quantity === 0">
@@ -40,6 +43,7 @@
                     price: 12,
                     quantity: 2,
                     isAvailable: true,
+                    sizes: ['XS','S', 'M', 'L', 'XL', 'XLL']
                 };
             },
             methods: {
