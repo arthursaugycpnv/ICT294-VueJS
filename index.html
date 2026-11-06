@@ -52,6 +52,7 @@
         <input @input="hasTyped = true" placeholder="Commence à écrire">
         <div v-if="hasTyped">Tu as commencé à écrire</div>
         <div @keyup="d">test</div>
+        <button @click="alertSomeText(quantity)"> Alert quantité actuelle </button>
 
 
     </div>
@@ -87,7 +88,10 @@
                 sayHello() {
                     console.log("Hello World !")
                     alert("Hello World !")
-                }
+                },
+                alertSomeText(text) {
+                    alert(text)
+                },
             },
             computed: {
                 totalPrice() {
