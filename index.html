@@ -48,6 +48,10 @@
         <hr>
         <button v-on:click="sayHello"> v-on:click </button>
         <button @click="sayHello"> @click </button>
+        <br><span @mouseover="sayHello">@mouseover</span><br>
+        <input @input="hasTyped = true" placeholder="Commence à écrire">
+        <div v-if="hasTyped">Tu as commencé à écrire</div>
+        <div @keyup="d">test</div>
 
 
     </div>
@@ -69,7 +73,8 @@
                         { id: 3, firstname: "Farah", lastname: "Mohamed" },
                     ],
                     username: 'NomParDéfaut',
-                    selectedCountry: ''
+                    selectedCountry: '',
+                    hasTyped: false
                 };
             },
             methods: {
