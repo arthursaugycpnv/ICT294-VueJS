@@ -12,9 +12,20 @@
         <!-- Recherche : v-model -->
         <input type="text" v-model="search" placeholder="Rechercher un produit..."> <!-- Liste des produits : v-for -->
         <h2>Nos produits</h2>
-        <div v-for="product in filteredProducts" :key="product.id">
+        <div v-for="product in products" :key="product.id">
             <h3>{{ product.name }}</h3>
-            <p>Prix : {{ product.price }} €</p>
+            <p>Prix : {{ product.price }} CHF</p>
+        </div>
+        <h2>Produit selectionné</h2>
+        <div v-if="selectedProduct === ''">Pas de produit selectionné : Veuillez en choisir un dans la liste</div>
+        <div v-else>
+            <div>
+                <p><b>{{selectedProduct.name}}</b></p>
+            </div>
+        </div>
+        <select v-model="selectedProduct">
+            <option v-for="product in products" :value=product>{{product.name}}</option>
+        </select>
             <!-- Chargement de Vue.js 3 depuis le CDN -->
             <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
             <script>
@@ -22,7 +33,14 @@
                 createApp({
                     data() {
                         return {
-                            
+                            title: '',
+                            products: [
+                                {id: 1, name: "Lait", price: 2},
+                                {id: 2, name: "Lait d'amande", price: 4},
+                                {id: 3, name: "Gruyère", price: 6.4},
+                                {id: 4, name: "Vacherin Fribourgois", price: 5.9}
+                            ],
+                            selectedProduct: ''
                         };
                     },
                     methods: {
