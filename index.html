@@ -35,6 +35,10 @@
         <ul>
             <li v-for="person in listOfObject" :key="person.id">{{ person.id }} - Nom : {{person.lastname}} | Prénom: {{person.firstname }}</li>
         </ul>
+        <hr>
+        <label>Votre nom :</label>
+        <input type="text" v-model="username">
+        <p>Bonjour {{ username }} !</p>
 
 
     </div>
@@ -55,6 +59,7 @@
                         { id: 2, firstname: "Ruben", lastname: "ten Cate" },
                         { id: 3, firstname: "Farah", lastname: "Mohamed" },
                     ],
+                    username: 'NomParDéfaut',
                 };
             },
             methods: {
