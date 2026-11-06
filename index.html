@@ -15,6 +15,7 @@
             <button @click="increaseQuantity">+</button>
             <button @click="decreaseQuantity">-</button>
         </p>
+        <p>Total : <b>{{totalPrice}} CHF</b></p>
 
     </div>
     <!-- Chargement de Vue.js 3 depuis le CDN -->
@@ -37,6 +38,11 @@
                     this.quantity--;
                 },
             },
+            computed: {
+                totalPrice() {
+                    return this.price * this.quantity;
+                }
+            }
         }).mount("#app");
     </script>
 </body>
