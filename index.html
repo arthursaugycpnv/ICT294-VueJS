@@ -45,6 +45,9 @@
             <option value="Belge">be</option>
         </select>
         <p>Bonjour {{ username }} ! Vous êtes {{ selectedCountry}}</p>
+        <hr>
+        <button v-on:click="sayHello"> v-on:click </button>
+        <button @click="sayHello"> @click </button>
 
 
     </div>
@@ -76,6 +79,10 @@
                 decreaseQuantity() {
                     this.quantity--;
                 },
+                sayHello() {
+                    console.log("Hello World !")
+                    alert("Hello World !")
+                }
             },
             computed: {
                 totalPrice() {
