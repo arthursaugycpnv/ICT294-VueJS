@@ -9,13 +9,21 @@
 <body>
     <div id="app">
         <h1>{{ product }}</h1>
-        <p>Prix : {{ price }} CHF</p>
-        <p>
-            Quantité : {{ quantity }}
-            <button @click="increaseQuantity">+</button>
-            <button @click="decreaseQuantity">-</button>
-        </p>
-        <p>Total : <b>{{totalPrice}} CHF</b></p>
+        <!-- Les conditions doivent être à la suite 
+        ++ Pas de même balises imbriquées -->
+        <div v-if="isAvailable">
+            <p>Prix : {{ price }} CHF</p>
+            <p>
+                Quantité : {{ quantity }}
+                <button @click="increaseQuantity">+</button>
+                <button @click="decreaseQuantity">-</button>
+            </p>
+            <p>Total : <b>{{totalPrice}} CHF</b></p>
+        </div>
+        <div v-else>
+            <p>Produit indisponible</p>
+        </div>
+
 
     </div>
     <!-- Chargement de Vue.js 3 depuis le CDN -->
@@ -28,6 +36,7 @@
                     product: "Chaussettes",
                     price: 12,
                     quantity: 2,
+                    isAvailable: true,
                 };
             },
             methods: {
