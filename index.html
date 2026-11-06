@@ -20,12 +20,17 @@
         <div v-if="selectedProduct === ''">Pas de produit selectionné : Veuillez en choisir un dans la liste</div>
         <div v-else>
             <div>
-                <p><b>{{selectedProduct.name}}</b></p>
+                <b>{{selectedProduct.name}}</b>
+                <button @click=addToCart(selectedProduct.name)>Ajouter au panier</button>
             </div>
         </div>
         <select v-model="selectedProduct">
             <option v-for="product in products" :value=product>{{product.name}}</option>
         </select>
+        <h2>Votre panier</h2>
+        <ul>
+            <li v-for="element in cart">{{element}}</li>
+        </ul>
             <!-- Chargement de Vue.js 3 depuis le CDN -->
             <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
             <script>
@@ -40,11 +45,16 @@
                                 {id: 3, name: "Gruyère", price: 6.4},
                                 {id: 4, name: "Vacherin Fribourgois", price: 5.9}
                             ],
-                            selectedProduct: ''
+                            selectedProduct: '',
+                            cart: []
                         };
                     },
                     methods: {
-                        
+                        addToCart(product) {
+                            // On peut imaginer vérifier si un élément existe déjà pour augmenter la quantité
+                            // d'avoir plusieurs même élément dans la liste
+                            this.cart.push(product)
+                        }
                         },
                     computed: {
 
