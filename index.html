@@ -2,104 +2,37 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Apprendre Vue.js</title>
+    <meta charset="UTF-8">
+    <title>Ma boutique Vue.js</title>
 </head>
 
 <body>
     <div id="app">
-        <h1>{{ product }}</h1>
-        <!-- Les conditions doivent être à la suite 
-        ++ Pas de même balises imbriquées -->
-        <div v-if="isAvailable">
-            <p>Prix : {{ price }} CHF</p>
-            <p>
-                Quantité : {{ quantity }}
-                <button @click="decreaseQuantity">-</button>
-                <button @click="increaseQuantity">+</button>
-            </p>
-            <!-- Vue supprime les espaces entre 2 éléments
-            -> utiliser un join ou du css -->
-            <p><b>Tailles</b> : <span v-for="size in sizes">{{ size }}, </span></p>
-            <p>Total : <b>{{totalPrice}} CHF</b></p>
-        </div>
-        <div v-else-if="quantity === 0">
-            <p>Rupture stock / Aucune quantité à acheter </p>
-        </div>
-        <div v-else>
-            <p>Produit indisponible</p>
-        </div>
-        <hr>
-        <!-- :key identifie chaque élément pour que Vue le suive si la liste change (tri, ajout, suppression).
-        Peu utile ici (texte seul), mais indispensable si l'élément a un état (input, composant). -->
-        <ul>
-            <li v-for="person in listOfObject" :key="person.id">{{ person.id }} - Nom : {{person.lastname}} | Prénom: {{person.firstname }}</li>
-        </ul>
-        <hr>
-        <label>Votre nom :</label>
-        <input type="text" v-model="username">
-        <label>Votre pays</label>
-        <select v-model="selectedCountry">
-            <option value="France">fr</option>
-            <option value="Suisse">ch</option>
-            <option value="Belge">be</option>
-        </select>
-        <p>Bonjour {{ username }} ! Vous êtes {{ selectedCountry}}</p>
-        <hr>
-        <button v-on:click="sayHello"> v-on:click </button>
-        <button @click="sayHello"> @click </button>
-        <br><span @mouseover="sayHello">@mouseover</span><br>
-        <input @input="hasTyped = true" placeholder="Commence à écrire">
-        <div v-if="hasTyped">Tu as commencé à écrire</div>
-        <div @keyup="d">test</div>
-        <button @click="alertSomeText(quantity)"> Alert quantité actuelle </button>
+        <h1>{{ title }}</h1>
+        <!-- Recherche : v-model -->
+        <input type="text" v-model="search" placeholder="Rechercher un produit..."> <!-- Liste des produits : v-for -->
+        <h2>Nos produits</h2>
+        <div v-for="product in filteredProducts" :key="product.id">
+            <h3>{{ product.name }}</h3>
+            <p>Prix : {{ product.price }} €</p>
+            <!-- Chargement de Vue.js 3 depuis le CDN -->
+            <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+            <script>
+                const { createApp } = Vue;
+                createApp({
+                    data() {
+                        return {
+                            
+                        };
+                    },
+                    methods: {
+                        
+                        },
+                    computed: {
 
-
-    </div>
-    <!-- Chargement de Vue.js 3 depuis le CDN -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script>
-        const { createApp } = Vue;
-        createApp({
-            data() {
-                return {
-                    product: "Chaussettes",
-                    price: 12,
-                    quantity: 2,
-                    isAvailable: true,
-                    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XLL'],
-                    listOfObject: [
-                        { id: 1, firstname: "Arthur", lastname: "Saugy" },
-                        { id: 2, firstname: "Ruben", lastname: "ten Cate" },
-                        { id: 3, firstname: "Farah", lastname: "Mohamed" },
-                    ],
-                    username: 'NomParDéfaut',
-                    selectedCountry: '',
-                    hasTyped: false
-                };
-            },
-            methods: {
-                increaseQuantity() {
-                    this.quantity++;
-                },
-                decreaseQuantity() {
-                    this.quantity--;
-                },
-                sayHello() {
-                    console.log("Hello World !")
-                    alert("Hello World !")
-                },
-                alertSomeText(text) {
-                    alert(text)
-                },
-            },
-            computed: {
-                totalPrice() {
-                    return this.price * this.quantity;
-                }
-            }
-        }).mount("#app");
-    </script>
+                    }
+                }).mount("#app");
+            </script>
 </body>
 
 </html>
